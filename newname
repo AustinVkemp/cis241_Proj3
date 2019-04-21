@@ -1,0 +1,22 @@
+# Changes the file name if it is there, if not gives an error
+if [[ ! $# -eq 2 ]]; then
+   echo "Please enter two arguments."
+fi
+# Checks to see if the file is there
+if [ ! -e $1 ]
+then 
+echo $1 is not a valid file. 
+exit 1
+fi 
+# Gives a number to the new file
+nfile=$2
+if [[ -e $nfile ]] ; then
+    x=1
+    while [[ -e $nfile-$x ]] ; do
+        let x++
+    done
+nfile=$nfile-$x
+mv $1 $nfile
+else 
+mv $1 $2
+fi
